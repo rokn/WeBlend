@@ -5,14 +5,15 @@ const { extractFieldsMiddleware } = require('api/utils')
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    Scene.find({}, (err, docs) => {
-        if (err) {
-            next(err);
-            return;
-        }
+    Scene.find()
+        .then(scenes => res.send(scenes))
+        .catch(err => next(err))
+});
 
-        res.send(docs);
-    })
+router.get('/:id', (req, res, next) => {
+    Scene.findById(req.params.id)
+        .then(scene => res.send(scene))
+        .catch(_ => res.status(404).end());
 });
 
 router.post('/', extractFieldsMiddleware(SceneCreateVM, true), (req, res, next) => {
