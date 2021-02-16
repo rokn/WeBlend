@@ -1,8 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require('app-module-path').addPath(__dirname);
 
-const apiRouter = require('./routes/apiV1');
+const apiRouter = require('routes/apiV1');
 
 const app = express();
 

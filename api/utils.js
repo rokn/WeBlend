@@ -7,7 +7,7 @@ function extractFieldsMiddleware(viewModel, strict = false) {
             }
             if (strict && !req.body[prop]) {
                 // TODO: Better handle
-                return void next(new Error('BAD_REQUEST'));
+                return next(new Error('BAD_REQUEST'));
             }
 
             result[prop] = req.body[prop];
