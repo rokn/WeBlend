@@ -22,7 +22,7 @@ router.delete('/:id', (req, res, next) => {
         .catch(_ => res.status(500).end());
 });
 
-router.post('/', extractFieldsMiddleware(SceneCreateVM, true), (req, res, next) => {
+router.post('/', extractFieldsMiddleware(SceneCreateVM, false), (req, res, next) => {
     SceneModel.create({...req.body})
         .then(scene => res.send(scene))
         .catch(err => next(err))
