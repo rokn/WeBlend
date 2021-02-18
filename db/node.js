@@ -2,24 +2,22 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose;
 const db = require('db/connection');
 
-const NodeSchema = new Schema({
+const NodeSchema = new Schema();
+NodeSchema.add({
     name:  String,
 
     parent: {
-        type: Schema.Types.ObjectId,
-        ref: 'NodeSchema',
+        type: NodeSchema,
         default: null
     },
 
-    children: [{
-        type: Schema.Types.ObjectId,
-        ref: 'NodeSchema'
-    }],
+    children: [NodeSchema],
 
     transform: {
         position: { type: [Number], default: [0,0,0] },
         rotation: { type: [Number], default: [0,0,0] },
-        scale:    { type: [Number], default: [0,0,0] },
+        scale:    { type: [Number], default: [1,1,1] },
+        origin:   { type: [Number], default: [0,0,0] },
     },
 
     props: Schema.Types.Mixed,
