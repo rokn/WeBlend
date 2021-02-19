@@ -6,11 +6,6 @@ const NodeSchema = new Schema();
 NodeSchema.add({
     name:  String,
 
-    parent: {
-        type: NodeSchema,
-        default: null
-    },
-
     children: [NodeSchema],
 
     transform: {
